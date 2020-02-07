@@ -16,13 +16,28 @@
         height: 100vh;
         box-sizing: border-box;
       }
+      [data-mode="bottom"] iframe {
+        height: 200px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
     </style>
   </head>
   <body>
     <iframe
-      src="https://www.streamtext.net/player?event=IHaveADream&ff=K2D,Verdana,sans-serif&fs=30&fgc=ffffff&bgc=transparent&header=false&controls=false&footer=false&chat=false"
+      id="ccFrame"
       allowtransparency="true"
       frameborder="0"
     ></iframe>
+    <script>
+      var eventName = location.search.match(/env=test/) ? 'IHaveADream' : 'JavaScriptBangkok'
+      ccFrame.src = "https://www.streamtext.net/player?event=" + eventName + "&ff=K2D,Verdana,sans-serif&fs=64&fgc=ffffff&bgc=transparent&header=false&controls=false&footer=false&chat=false"
+    </script>
+    <script>
+      if (location.search.match(/mode=bottom/)) {
+        document.body.setAttribute('data-mode', 'bottom')
+      }
+    </script>
   </body>
 </html>
