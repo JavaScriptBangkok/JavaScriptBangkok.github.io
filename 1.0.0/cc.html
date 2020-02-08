@@ -17,10 +17,22 @@
         box-sizing: border-box;
       }
       [data-mode="bottom"] iframe {
-        height: 200px;
-        position: absolute;
+        height: 264px;
+        position: fixed;
         bottom: 0;
         left: 0;
+      }
+      [data-chroma="on"] {
+        background: #0f0;
+      }
+      [data-chroma="on"] iframe {
+        filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 4px 5px rgba(0,0,0,0.5));
+      }
+      [data-noscroll="on"] {
+        overflow: hidden;
+      }
+      [data-noscroll="on"] iframe {
+        overflow: hidden;
       }
     </style>
   </head>
@@ -32,11 +44,18 @@
     ></iframe>
     <script>
       var eventName = location.search.match(/env=test/) ? 'IHaveADream' : 'JavaScriptBangkok'
-      ccFrame.src = "https://www.streamtext.net/player?event=" + eventName + "&ff=K2D,Verdana,sans-serif&fs=64&fgc=ffffff&bgc=transparent&header=false&controls=false&footer=false&chat=false"
+      ccFrame.src = "https://www.streamtext.net/player?event=" + eventName + "&ff=K2D,Verdana,sans-serif&fs=80&fgc=ffffff&bgc=transparent&header=false&controls=false&footer=false&chat=false"
     </script>
     <script>
       if (location.search.match(/mode=bottom/)) {
         document.body.setAttribute('data-mode', 'bottom')
+      }
+      if (location.search.match(/chroma/)) {
+        document.body.setAttribute('data-chroma', 'on')
+      }
+      if (location.search.match(/noscroll/)) {
+        document.body.setAttribute('data-noscroll', 'on')
+        ccFrame.setAttribute('scrolling', 'no')
       }
     </script>
   </body>
